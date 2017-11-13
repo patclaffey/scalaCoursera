@@ -9,26 +9,60 @@ import org.junit._
 class setsTest extends  AssertionsForJUnit{
   import introFuncProgramming.week2.exerciseSets._
 
+  // use the singletonSet function to create a set with one item 55
+  val set55Single:Set = singletonSet(55)
+  val set66Single:Set = singletonSet(66)
+  val set77Single:Set = singletonSet(77)
+  val set88Single:Set = singletonSet(88)
+
   @Test
-  def singletonInSet  = {
-    // use the singletonSet function to create a set with one item 55
-    val set55Single:Set = singletonSet(55)
+  def verifySingletonSet  = {
+
     // we use the result of the function to call to test that 55 was added
     // this will give a boolean result
-    val is55inSet:Boolean = set55Single(55)
+    val set55:Set = singletonSet(55)
     // assert True
-    assertTrue("testing singleton", is55inSet )
+    assertTrue("testing that 55 is in set", set55(55) )
+    assertFalse("testing that 999 is not in set", set55(999) )
+  }
+
+
+  @Test
+  def verifyUnionSet  = {
+    // use the singletonSet function to create a set with one item 55
+    val unionSet:Set = union(union(set55Single, set66Single),union(set77Single, set88Single) )
+    assertTrue("testing 55", unionSet(55) )
+    assertTrue("testing 66", unionSet(66) )
+    assertTrue("testing 77", unionSet(77) )
+    assertTrue("testing 88", unionSet(88) )
+    assertFalse("testing 99", unionSet(99) )
   }
 
   @Test
-  def singletonNotInSet  = {
+  def verifyInterSectSet  = {
     // use the singletonSet function to create a set with one item 55
-    val set55Single:Set = singletonSet(55)
-    val is999inSet:Boolean = set55Single(999)
-    assertFalse("testing singleton", is999inSet )
+    val set1:Set = union(union(set55Single, set66Single),union(set77Single, set88Single) )
+    val set2:Set = union(set55Single, set66Single)
+    val intersectSet = intersect(set1,set2)
+    assertTrue("testing 55", intersectSet(55) )
+    assertTrue("testing 66", intersectSet(66) )
+    assertFalse("testing 77", intersectSet(77) )
+    assertFalse("testing 88", intersectSet(88) )
+    assertFalse("testing 99", intersectSet(99) )
   }
 
-
+  @Test
+  def verifyDiffSet  = {
+    // use the singletonSet function to create a set with one item 55
+    val set1:Set = union(union(set55Single, set66Single),union(set77Single, set88Single) )
+    val set2:Set = union(set55Single, set66Single)
+    val diffSet = diff(set1,set2)
+    assertFalse("testing 55", diffSet(55) )
+    assertFalse("testing 66", diffSet(66) )
+    assertTrue("testing 77", diffSet(77) )
+    assertTrue("testing 88", diffSet(88) )
+    assertFalse("testing 99", diffSet(99) )
+  }
 
 }
 

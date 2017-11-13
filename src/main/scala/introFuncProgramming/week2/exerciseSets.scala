@@ -25,11 +25,18 @@ object exerciseSets {
 
   def singletonSet(elem: Int): Set =
   {
-    val store = elem
-    def myStore(zz:Int) = if (zz == store ) true else false
-    //if (!cache.contains(elem)) {cache(elem) = elem}
+    //singletonSet needs to return a value of type Set
+    // the type of Set is int => Boolean
+    // the above is a function type
+    // so it can return any possible function that meets the following condition
+    //      takes one input parameter, and Int
+    //      returns a value that is Boolena
+    // innerFunc meets the above criteria
+    def innerFunc(num:Int):Boolean = if (num == elem ) true else false
 
-    myStore}
+    // here we return the value of the function simply by giving its name
+    innerFunc
+  }
 
 
 
@@ -38,8 +45,8 @@ object exerciseSets {
     * the sets of all elements that are in either `s` or `t`.
     */
   def union(s: Set, t: Set): Set = {
-    def zxc(xx:Int):Boolean = {s(xx) || t(xx)}
-    zxc
+    def innerFunc(num:Int):Boolean = {s(num) || t(num)}
+    innerFunc
   }
 
   /**
@@ -47,15 +54,18 @@ object exerciseSets {
     * the set of all elements that are both in `s` and `t`.
     */
   def intersect(s: Set, t: Set): Set = {
-    def zxc(xx:Int):Boolean = {s(xx) && t(xx)}
-    zxc
+    def innerFunc(num:Int):Boolean = {s(num) && t(num)}
+    innerFunc
   }
 
   /**
     * Returns the difference of the two given sets,
     * the set of all elements of `s` that are not in `t`.
     */
-  def diff(s: Set, t: Set): Set = ???
+  def diff(s: Set, t: Set): Set = {
+    def innerFunc(num:Int):Boolean = {s(num) && !t(num)}
+    innerFunc
+  }
 
   /**
     * Returns the subset of `s` for which `p` holds.

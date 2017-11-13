@@ -64,6 +64,18 @@ class setsTest extends  AssertionsForJUnit{
     assertFalse("testing 99", diffSet(99) )
   }
 
+  @Test
+  def verifyFilter  = {
+    // use the singletonSet function to create a set with one item 55
+    val set1:Set = union(union(set55Single, set66Single),union(set77Single, set88Single) )
+    val intersectSet = filter(set1, x=> {if(x==55 || x==88 || x==99) true else false } )
+    assertTrue("testing 55", intersectSet(55) )
+    assertFalse("testing 66", intersectSet(66) )
+    assertFalse("testing 77", intersectSet(77) )
+    assertTrue("testing 88", intersectSet(88) )
+    assertFalse("testing 99", intersectSet(99) )
+  }
+
 }
 
 

@@ -70,7 +70,11 @@ object exerciseSets {
   /**
     * Returns the subset of `s` for which `p` holds.
     */
-  def filter(s: Set, p: Int => Boolean): Set = ???
+  // this is exactly the same functionality as intersect
+  def filter(s: Set, p: Int => Boolean): Set = {
+    def innerFunc(num:Int):Boolean = {s(num) && p(num)}
+    innerFunc
+  }
 
 
   /**
